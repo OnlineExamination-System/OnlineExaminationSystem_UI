@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package onlineexaminationsystem_ui;
 import javax.swing.*;
 import java.awt.*;
@@ -22,6 +23,8 @@ public class OnlineExaminationSystem_UI extends JFrame implements ActionListener
         JLabel l1 = new JLabel(i1);
         l1.setBounds(0, 0, 600, 500);
         add(l1);
+
+
         
         JLabel l2 = new JLabel("Simple Minds");
         l2.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
