@@ -19,13 +19,52 @@ public class OnlineExaminationSystem_UI extends JFrame
         
         ImageIcon i1= new ImageIcon(ClassLoader.getSystemResource("onlineexaminationsystem_ui/icons/welcome_exam.jpg"));
         JLabel l1=new JLabel(i1);
-        l1.setBounds(0,0,1000,500);
+        l1.setBounds(0,0,1000,500); 
         add(l1);
         
-        JLabel l2=new JLabel("Welcome to take your Examination");
-        l2.setFont(new Font("Raleway",Font.BOLD,26));
-        l2.setBounds(750,40,300,100);
+        JLabel l2=new JLabel("Welcome  to Examination");
+        l2.setFont(new Font("Times New roman",Font.BOLD,26));
+        l2.setForeground(Color.BLACK);
+        l2.setBounds(1200,40,500,100);
+        add(l2);
         
+        
+        JLabel l3=new JLabel("Enter your Name");
+        l3.setFont(new Font("Raleway",Font.BOLD,26));
+        l3.setForeground(Color.darkGray);
+        l3.setBounds(1300,130,400,90);
+        add(l3);
+        
+        JLabel l4=new JLabel("Enter your E-Mail");
+        l4.setFont(new Font("Raleway",Font.BOLD,26));
+        l4.setForeground(Color.darkGray);
+        l4.setBounds(1300,250,400,90);
+        add(l4);
+        
+        JLabel l5=new JLabel("Enter your Roll Number");
+        l5.setFont(new Font("Raleway",Font.BOLD,26));
+        l5.setForeground(Color.darkGray);
+        l5.setBounds(1300,400,400,90);
+        add(l5);
+        
+        JTextField t1=new JTextField();
+        t1.setBounds(1300,200,300,25);
+        t1.setFont(new Font("Times New Roman",Font.BOLD,20));
+        add(t1);
+        
+         JTextField t2=new JTextField();
+        t2.setBounds(1300,320,300,25);
+        t2.setFont(new Font("Times New Roman",Font.BOLD,20));
+        add(t2);
+        
+        JTextField t3=new JTextField();
+        t3.setBounds(1300,470,300,25);
+        t3.setFont(new Font("Times New Roman",Font.BOLD,20));
+        add(t3);
+        
+        JButton b1=new JButton("Take Examination");
+        b1.setBounds(1300,700,400,50);
+        add(b1);
         
         setVisible(true);
     }
