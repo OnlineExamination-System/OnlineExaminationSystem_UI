@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class OnlineExaminationSystem_UI extends JFrame
+public class OnlineExaminationSystem_UI extends JFrame 
 {
     OnlineExaminationSystem_UI()
     {
@@ -19,13 +19,13 @@ public class OnlineExaminationSystem_UI extends JFrame
         
         ImageIcon i1= new ImageIcon(ClassLoader.getSystemResource("onlineexaminationsystem_ui/icons/welcome_exam.jpg"));
         JLabel l1=new JLabel(i1);
-        l1.setBounds(0,0,1000,500); 
+        l1.setBounds(200,200,1000,500); 
         add(l1);
         
         JLabel l2=new JLabel("Welcome  to Examination");
-        l2.setFont(new Font("Times New roman",Font.BOLD,26));
+        l2.setFont(new Font("Times New roman",Font.BOLD,36));
         l2.setForeground(Color.BLACK);
-        l2.setBounds(1200,40,500,100);
+        l2.setBounds(500,100,500,100);
         add(l2);
         
         
@@ -47,6 +47,12 @@ public class OnlineExaminationSystem_UI extends JFrame
         l5.setBounds(1300,400,400,90);
         add(l5);
         
+        JLabel l6=new JLabel("Enter your Class");
+        l6.setFont(new Font("Raleway",Font.BOLD,26));
+        l6.setForeground(Color.darkGray);
+        l6.setBounds(1300,550,400,90);
+        add(l6);
+        
         JTextField t1=new JTextField();
         t1.setBounds(1300,200,300,25);
         t1.setFont(new Font("Times New Roman",Font.BOLD,20));
@@ -62,12 +68,21 @@ public class OnlineExaminationSystem_UI extends JFrame
         t3.setFont(new Font("Times New Roman",Font.BOLD,20));
         add(t3);
         
+        JTextField t4=new JTextField();
+        t4.setBounds(1300,620,300,25);
+        t4.setFont(new Font("Times New Roman",Font.BOLD,20));
+        add(t4);
+        
+        
         JButton b1=new JButton("Take Examination");
-        b1.setBounds(1300,700,400,50);
+        b1.setBounds(1300,750,400,50);
+        b1.setBackground(new Color(30,144,254));
         add(b1);
         
         setVisible(true);
     }
+    
+    
     public static void main(String[] args)
     {
        new OnlineExaminationSystem_UI(); 
