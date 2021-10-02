@@ -1,10 +1,3 @@
-<<<<<<< Updated upstream
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-=======
->>>>>>> Stashed changes
 package onlineexaminationsystem_ui;
 
 import javax.swing.*;
@@ -13,11 +6,7 @@ import java.awt.event.*;
 
 public class Quiz extends JFrame implements ActionListener{
     
-<<<<<<< Updated upstream
-    JButton next, submit, lifeline;
-=======
     JButton next, submit;
->>>>>>> Stashed changes
     public static int count = 0;
     public static int timer = 15;
     public static int ans_given = 0;
@@ -29,11 +18,6 @@ public class Quiz extends JFrame implements ActionListener{
     JRadioButton opt1, opt2, opt3, opt4;
     ButtonGroup options;
     
-<<<<<<< Updated upstream
-    String username;
-    Quiz(String username){
-        this.username = username;
-=======
     String username; 
     String email;
     String rollno;
@@ -44,17 +28,12 @@ public class Quiz extends JFrame implements ActionListener{
         this.rollno = rollno;
         this.clss = clss;
         
->>>>>>> Stashed changes
         setBounds(250, 50, 1440, 950);
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
         
-<<<<<<< Updated upstream
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("simple/minds/icons/quiz.jpg"));
-=======
         
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("onlineexaminationsystem_ui/icons/quiz.jpg"));
->>>>>>> Stashed changes
         JLabel l1 = new JLabel(i1);
         l1.setBounds(0, 0, 1440, 392);
         add(l1);
@@ -179,17 +158,7 @@ public class Quiz extends JFrame implements ActionListener{
         next.setBounds(1100, 550, 200, 40);
         add(next);
         
-<<<<<<< Updated upstream
-        lifeline = new JButton("50-50 Lifeline");
-        lifeline.setFont(new Font("Tahoma", Font.PLAIN, 22));
-        lifeline.setBackground(new Color(30, 144, 255));
-        lifeline.setForeground(Color.WHITE);
-        lifeline.setBounds(1100, 630, 200, 40);
-        lifeline.addActionListener(this);
-        add(lifeline);
-=======
         
->>>>>>> Stashed changes
         
         submit = new JButton("Submit");
         submit.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -242,20 +211,7 @@ public class Quiz extends JFrame implements ActionListener{
                 }
             }
             this.setVisible(false);
-<<<<<<< Updated upstream
-            new Score(username, score).setVisible(true);
-        }else if(ae.getSource() == lifeline){
-            if(count == 2 || count == 4 || count == 6 || count == 8 || count == 9){
-                opt2.setEnabled(false);
-                opt3.setEnabled(false);
-            }else {
-                opt1.setEnabled(false);
-                opt4.setEnabled(false);
-            }
-            lifeline.setEnabled(false);
-=======
             new Score(username, email).setVisible(true);
->>>>>>> Stashed changes
         }
     }
     
@@ -309,11 +265,7 @@ public class Quiz extends JFrame implements ActionListener{
                     }
                 }
                 this.setVisible(false);
-<<<<<<< Updated upstream
-                new Score(username, score).setVisible(true);
-=======
                 new Score(username, email).setVisible(true);
->>>>>>> Stashed changes
             }else{
                 if(options.getSelection() == null){
                     pa[count][0] = "";
@@ -341,10 +293,6 @@ public class Quiz extends JFrame implements ActionListener{
     }
     
     public static void main(String[] args){
-<<<<<<< Updated upstream
-        new Quiz("").setVisible(true);
-=======
         new Quiz("","","","").setVisible(true);
->>>>>>> Stashed changes
     }
 }
