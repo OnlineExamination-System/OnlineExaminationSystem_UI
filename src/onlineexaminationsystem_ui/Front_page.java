@@ -7,11 +7,14 @@
 package onlineexaminationsystem_ui;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 
-public class OnlineExaminationSystem_UI extends JFrame 
-{
-    OnlineExaminationSystem_UI()
+
+public class Front_page extends JFrame implements ActionListener
+{   JButton b1,b2;
+    JTextField t1,t2,t3,t4;
+    Front_page()
     {
         setBounds(500,200,1000,500);
         getContentPane().setBackground(Color.WHITE);
@@ -53,39 +56,59 @@ public class OnlineExaminationSystem_UI extends JFrame
         l6.setBounds(1300,550,400,90);
         add(l6);
         
-        JTextField t1=new JTextField();
+        t1=new JTextField();
         t1.setBounds(1300,200,300,25);
         t1.setFont(new Font("Times New Roman",Font.BOLD,20));
         add(t1);
         
-         JTextField t2=new JTextField();
+        t2=new JTextField();
         t2.setBounds(1300,320,300,25);
         t2.setFont(new Font("Times New Roman",Font.BOLD,20));
         add(t2);
         
-        JTextField t3=new JTextField();
+        t3=new JTextField();
         t3.setBounds(1300,470,300,25);
         t3.setFont(new Font("Times New Roman",Font.BOLD,20));
         add(t3);
         
-        JTextField t4=new JTextField();
+        t4=new JTextField();
         t4.setBounds(1300,620,300,25);
         t4.setFont(new Font("Times New Roman",Font.BOLD,20));
         add(t4);
         
         
-        JButton b1=new JButton("Take Examination");
+        b1=new JButton("Take Examination");
         b1.setBounds(1300,750,400,50);
         b1.setBackground(new Color(30,144,254));
+        b1.addActionListener(this);
         add(b1);
+        
+        b2=new JButton("Exit Examination");
+        b2.setBounds(1300,850,400,50);
+        b2.setBackground(new Color(30,144,254));
+        b2.addActionListener(this);
+        add(b2);
         
         setVisible(true);
     }
-    
+    public void actionPerformed(ActionEvent ae)
+    {
+        if(ae.getSource()==b1){
+            String name= t1.getText();
+            String email=t2.getText();
+            String rollno=t3.getText();
+            String clss=t4.getText();
+            this.setVisible(false);
+            new Rules(name,email,rollno,clss);
+            
+        }else{
+            System.exit(0);
+        }
+    }
     
     public static void main(String[] args)
     {
-       new OnlineExaminationSystem_UI(); 
+       new Front_page(); 
     }
 }
 
