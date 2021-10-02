@@ -3,6 +3,13 @@ package onlineexaminationsystem_ui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+        
 
 public class Quiz extends JFrame implements ActionListener{
     
@@ -48,78 +55,50 @@ public class Quiz extends JFrame implements ActionListener{
         question.setBounds(150, 450, 900, 30);
         add(question);
         
-        q[0][0] = "Which is used to find and fix bugs in the Java programs.?";
-        q[0][1] = "JVM";
-        q[0][2] = "JDB";
-        q[0][3] = "JDK";
-        q[0][4] = "JRE";
+       
+                try {
 
-        q[1][0] = "What is the return type of the hashCode() method in the Object class?";
-        q[1][1] = "int";
-        q[1][2] = "Object";
-        q[1][3] = "long";
-        q[1][4] = "void";
+                    URL url = new URL("http://127.0.0.1:9900/attempt");
 
-        q[2][0] = "Which package contains the Random class?";
-        q[2][1] = "java.util package";
-        q[2][2] = "java.lang package";
-        q[2][3] = "java.awt package";
-        q[2][4] = "java.io package";
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("GET");
+                    conn.connect();
 
-        q[3][0] = "An interface with no fields or methods is known as?";
-        q[3][1] = "Runnable Interface";
-        q[3][2] = "Abstract Interface";
-        q[3][3] = "Marker Interface";
-        q[3][4] = "CharSequence Interface";
 
-        q[4][0] = "In which memory a String is stored, when we create a string using new operator?";
-        q[4][1] = "Stack";
-        q[4][2] = "String memory";
-        q[4][3] = "Random storage space";
-        q[4][4] = "Heap memory";
+                    int responsecode = conn.getResponseCode();
 
-        q[5][0] = "Which of the following is a marker interface?";
-        q[5][1] = "Runnable interface";
-        q[5][2] = "Remote interface";
-        q[5][3] = "Readable interface";
-        q[5][4] = "Result interface";
+                    if (responsecode != 200) {
+                        throw new RuntimeException("HttpResponseCode: " + responsecode);
+                    } else {
 
-        q[6][0] = "Which keyword is used for accessing the features of a package?";
-        q[6][1] = "import";
-        q[6][2] = "package";
-        q[6][3] = "extends";
-        q[6][4] = "export";
+                        String inline = "";
+                        Scanner scanner = new Scanner(url.openStream());
 
-        q[7][0] = "In java, jar stands for?";
-        q[7][1] = "Java Archive Runner";
-        q[7][2] = "Java Archive";
-        q[7][3] = "Java Application Resource";
-        q[7][4] = "Java Application Runner";
+                        while (scanner.hasNext()) {
+                            inline += scanner.nextLine();
+                        }
 
-        q[8][0] = "Which of the following is a mutable class in java?";
-        q[8][1] = "java.lang.StringBuilder";
-        q[8][2] = "java.lang.Short";
-        q[8][3] = "java.lang.Byte";
-        q[8][4] = "java.lang.String";
+                        scanner.close();
+                        JSONParser parse = new JSONParser();
+                        JSONObject data_obj = (JSONObject) parse.parse(inline);
+                        JSONArray arr = (JSONArray) data_obj.get("data");
 
-        q[9][0] = "Which of the following option leads to the portability and security of Java?";
-        q[9][1] = "Bytecode is executed by JVM";
-        q[9][2] = "The applet makes the Java code secure and portable";
-        q[9][3] = "Use of exception handling";
-        q[9][4] = "Dynamic binding between objects";
-        
-        qa[0][1] = "JDB";
-        qa[1][1] = "int";
-        qa[2][1] = "java.util package";
-        qa[3][1] = "Marker Interface";
-        qa[4][1] = "Heap memory";
-        qa[5][1] = "Remote interface";
-        qa[6][1] = "import";
-        qa[7][1] = "Java Archive";
-        qa[8][1] = "java.lang.StringBuilder";
-        qa[9][1] = "Bytecode is executed by JVM";
-        
-        
+
+                        for (int i = 0; i < arr.size(); i++) {
+
+                            JSONObject new_obj = (JSONObject) arr.get(i);
+
+                            q[i][0]= (String)new_obj.get("Ques");
+                            q[i][1] = (String)new_obj.get("Option1");
+                            q[i][2] = (String)new_obj.get("Option2");
+                            q[i][3] = (String)new_obj.get("Option3");
+                            q[i][4] = (String)new_obj.get("Option4");
+                            qa[i][1] = (String)new_obj.get("ans");
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
         opt1 = new JRadioButton("");
         opt1.setBounds(170, 520, 700, 30);
         opt1.setFont(new Font("Dialog", Font.PLAIN, 20));
@@ -211,7 +190,7 @@ public class Quiz extends JFrame implements ActionListener{
                 }
             }
             this.setVisible(false);
-            new Score(username, email).setVisible(true);
+            new Score(username, email,rollno,clss,score).setVisible(true);
         }
     }
     
@@ -265,7 +244,7 @@ public class Quiz extends JFrame implements ActionListener{
                     }
                 }
                 this.setVisible(false);
-                new Score(username, email).setVisible(true);
+                new Score(username, email,rollno,clss,score).setVisible(true);
             }else{
                 if(options.getSelection() == null){
                     pa[count][0] = "";
